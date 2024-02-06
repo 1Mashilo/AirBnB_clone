@@ -28,7 +28,7 @@ class FileStorage:
         object_key = f"{obj.__class__.__name__}.{obj.id}"
         self.__objects[object_key] = obj
 
-    def save_to_file(self):
+    def save(self):
         """Save the objects to the JSON file."""
         serialized_objects = {}
 
@@ -40,7 +40,7 @@ class FileStorage:
         with open(self.__file_path, "w") as file:
             json.dump(serialized_objects, file)
 
-    def load_from_file(self):
+    def reload(self):
         """Load objects from the JSON file."""
         try:
             with open(self.__file_path, "r", encoding="UTF8") as file:
