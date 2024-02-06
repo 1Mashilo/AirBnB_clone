@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
 import uuid
-import models
 from datetime import datetime
-from models import storage
+import models
+
 class BaseModel:
     """Base model class for other classes to inherit from"""
 
@@ -36,7 +36,7 @@ class BaseModel:
     def save(self):
         """Update the updated_at attribute with the current datetime and save the object"""
         self.updated_at = datetime.now() # Update the updated_at attribute
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):        
         """Return a dictionary representation of the object"""
@@ -52,4 +52,3 @@ class BaseModel:
         dict_copy['__class__'] = self.__class__.__name__
 
         return dict_copy
-
