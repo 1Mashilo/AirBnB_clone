@@ -3,7 +3,7 @@
 import uuid
 import models
 from datetime import datetime
-
+from models import storage
 class BaseModel:
     """Base model class for other classes to inherit from"""
 
@@ -38,7 +38,7 @@ class BaseModel:
         self.updated_at = datetime.now() # Update the updated_at attribute
         storage.save()
 
-    def to_dict(self):
+    def to_dict(self):        
         """Return a dictionary representation of the object"""
 
         # Create a copy of the object's dictionary attributes
