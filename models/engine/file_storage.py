@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import json
 
 class FileStorage:
@@ -53,4 +55,3 @@ class FileStorage:
         except FileNotFoundError:
             # If the file does not exist, do nothing
             pass
-
