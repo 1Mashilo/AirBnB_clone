@@ -18,7 +18,7 @@ class FileStorage:
         """
         return self.__objects
 
-    def add_object(self, obj):
+    def new(self, obj):
         """
         Add a new object to the file storage.
 
