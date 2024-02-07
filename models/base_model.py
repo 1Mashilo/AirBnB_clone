@@ -32,7 +32,15 @@ class BaseModel:
             self.created_at = datetime.now()  # Date and time when the object is created
             self.updated_at = datetime.now()  # Date and time when the object is last updated
             models.storage.new(self)
+            
+    
+    def __str__(self):
+        """Returns a readable string representation
+        of BaseModel instances"""
 
+        clsName = self.__class__.__name__
+        return "[{}] ({}) {}".format(clsName, self.id, self.__dict__)
+        
     def save(self):
         """Update the updated_at attribute with the current datetime and save the object"""
         self.updated_at = datetime.now() # Update the updated_at attribute
