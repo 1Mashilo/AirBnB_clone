@@ -5,10 +5,11 @@
 import cmd
 import re
 from models.base_model import BaseModel
-from models import storage
+from models import storage, user
 
 class_home = {
     "BaseModel": BaseModel,
+    "User": user,
 }
 
 
