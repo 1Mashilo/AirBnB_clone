@@ -13,6 +13,7 @@ class_home = {
     "State": State,
     "City": City,
     "Amenity": Amenity,
+    "Place": Place,
 }
 
 
