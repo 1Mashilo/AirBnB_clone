@@ -5,16 +5,16 @@
 import cmd
 import re
 from models.base_model import BaseModel
-from models import storage, user
+from models import storage, user, state, city, amenity,place,review
 
 class_home = {
     "BaseModel": BaseModel,
-    "User": User,
-    "State": State,
-    "City": City,
-    "Amenity": Amenity,
-    "Place": Place,
-    "Review": Review,
+    "User": user,
+    "State": state,
+    "City": city,
+    "Amenity": amenity,
+    "Place": place,
+    "Review": review,
 }
 
 
