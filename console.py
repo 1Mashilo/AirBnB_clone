@@ -14,6 +14,7 @@ class_home = {
     "City": City,
     "Amenity": Amenity,
     "Place": Place,
+    "Review": Review,
 }
 
 
