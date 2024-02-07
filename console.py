@@ -11,6 +11,7 @@ class_home = {
     "BaseModel": BaseModel,
     "User": User,
     "State": State,
+    "City": City,
 }
 
 
