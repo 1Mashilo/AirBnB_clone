@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 
-"""An interactive shell?"""
+"""An interactive shell for managing objects in an Airbnb-like application"""
 
 import cmd
 import re
 from models.base_model import BaseModel
-from models import storage, user, state, city, amenity,place,review
+from models import storage, user, state, city, amenity, place, review
 
 class_home = {
     "BaseModel": BaseModel,
@@ -17,13 +17,13 @@ class_home = {
     "Review": review,
 }
 
-
-
 class HBNBCommand(cmd.Cmd):
+    """Command interpreter for the HBNB console"""
+    
     prompt = '(hbnb)  '
 
     def do_EOF(self, line):
-        """Exits console"""
+        """Exits the console"""
         print("")
         return True
 
@@ -33,31 +33,29 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def help_quit(self):
-        """when two arguments involve"""
+        """Provides help for the quit command"""
         print('\n'.join(["Quit command to exit the program"]))
 
     def emptyline(self):
-        """ overwriting the emptyline method """
+        """Overwrites the emptyline method to do nothing"""
         return False
-        # OR
-        # pass
 
     def do_create(self, line):
-        """Creates a new instances of a class"""
+        """Creates a new instance of a class"""
         if line:
             try:
                 glo_cls = globals().get(line, None)
                 obj = glo_cls()
                 obj.save()
-                print(obj.id)  # print the id
+                print(obj.id)  # Print the id
             except Exception:
                 print("** class doesn't exist **")
         else:
             print("** class name missing **")
 
     def do_show(self, line):
-        """print <class name> <id>"""
-        arr = line.split()    # split & assign to varia
+        """Prints the string representation of an instance"""
+        arr = line.split()
 
         if len(arr) < 1:
             print("** class name missing **")
@@ -73,8 +71,7 @@ class HBNBCommand(cmd.Cmd):
                 print(storage.all()[new_str])
 
     def do_destroy(self, line):
-        """Destroy command deletes an instance based on the class name and id
-        """
+        """Deletes an instance based on the class name and id"""
         arr = line.split()
         if len(arr) < 1:
             print("** class name missing **")
@@ -91,7 +88,7 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
 
     def do_all(self, line):
-        """ Print all instances in string representation """
+        """Prints all instances or instances of a specific class"""
         objects = []
         if line == "":
             print([str(value) for key, value in storage.all().items()])
@@ -107,12 +104,7 @@ class HBNBCommand(cmd.Cmd):
                 print(objects)
 
     def do_update(self, line):
-        """Update a class instance of a given id by adding or updating
-        a given attribute key/value pair or dictionary.
-        usage:  update <class> <id> <attribute_name> <attribute_value> or
-                <class>.update(<id>, <attribute_name>, <attribute_value>) or
-                <class>.update(<id>, <dictionary>)
-        """
+        """Updates an instance based on the class name and id"""
         arr = line.split()
         if len(arr) < 1:
             print("** class name missing **")
@@ -138,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
 
     def do_count(self, line):
-        """Print the count all class instances"""
+        """Prints the count of all class instances"""
         kclass = globals().get(line, None)
         if kclass is None:
             print("** class doesn't exist **")
@@ -150,6 +142,7 @@ class HBNBCommand(cmd.Cmd):
         print(count)
 
     def default(self, line):
+        """Handles commands in the format <class name>.<command>"""
         if line is None:
             return
 
