@@ -12,6 +12,7 @@ class_home = {
     "User": User,
     "State": State,
     "City": City,
+    "Amenity": Amenity,
 }
 
 
