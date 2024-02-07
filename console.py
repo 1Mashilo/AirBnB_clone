@@ -9,8 +9,10 @@ from models import storage, user
 
 class_home = {
     "BaseModel": BaseModel,
-    "User": user,
+    "User": User,
+    "State": State,
 }
+
 
 
 class HBNBCommand(cmd.Cmd):
