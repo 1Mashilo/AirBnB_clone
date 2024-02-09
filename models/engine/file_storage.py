@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import json
+import sys
 
 class FileStorage:
     """A class for handling file storage of objects in JSON format."""
@@ -46,12 +47,23 @@ class FileStorage:
         """Load objects from the JSON file."""
         try:
             with open(self.__file_path, "r", encoding="UTF8") as file:
-                # Deserialize JSON data and populate the storage dictionary
+             # Deserialize JSON data and populate the storage dictionary
                 serialized_data = json.load(file)
-                for object_key, serialized_obj in serialized_data.items():
-                    # Create object instances based on class names and attributes
-                    obj_instance = eval(serialized_obj["__class__"])(**serialized_obj)
+
+            for object_key, serialized_obj in serialized_data.items():
+                # Get class name safely using getattr and avoid eval
+                class_name = serialized_obj.get("__class__")
+                if class_name and hasattr(sys.modules, class_name):
+                    # Import the class dynamically only if it exists
+                    module = sys.modules[class_name]
+                    obj_class = getattr(module, class_name)
+                    # Create object instance using keyword arguments
+                    obj_instance = obj_class(**serialized_obj)
                     self.__objects[object_key] = obj_instance
+            else:
+                    # Warn when class is not found
+                    print(f"Warning: Skipping object with key '{object_key}' due to missing class '{class_name}'.")
+
         except FileNotFoundError:
-            # If the file does not exist, do nothing
+        # If the file does not exist, do nothing
             pass
