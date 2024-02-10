@@ -1,14 +1,16 @@
 #!/usr/bin/python3
 
 """
-This module defines the Place class, which represents a rental property or accommodation. 
-The Place class inherits from the BaseModel class (likely providing core data-management functionality).
+This module defines the Place class, which represents a rental
+property or accommodation.
+The Place class inherits from the BaseModel class (likely providing
+core data-management functionality).
 
 Attributes:
     city_id (str): ID of the city the place is located in.
     user_id (str): ID of the owner of the place.
     name (str): Name of the place.
-    description (str): Description of the place. 
+    description (str): Description of the place.
     number_rooms (int): Number of rooms in the place.
     number_bathrooms (int): Number of bathrooms.
     max_guest (int): Maximum number of guests allowed.
@@ -19,6 +21,7 @@ Attributes:
 """
 
 from models.base_model import BaseModel
+
 
 class Place(BaseModel):
     """Place class that inherits from BaseModel"""
