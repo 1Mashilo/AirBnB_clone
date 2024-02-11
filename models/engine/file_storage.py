@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-FileStorage module: Provides a JSON-based file storage mechanism for your Python objects.
+FileStorage module: Provides a JSON-based file storage mechanism for your
+Python objects.
 """
 
 import json
@@ -13,7 +14,8 @@ class FileStorage:
 
     Attributes:
         __file_path (str): The path to the JSON file where objects are stored.
-        __objects (dict): An in-memory dictionary to hold the deserialized objects.
+        __objects (dict): An in-memory dictionary to hold the deserialized
+        objects.
     """
 
     __file_path = "file.json"
@@ -34,26 +36,29 @@ class FileStorage:
 
         Args:
             obj: The object to be added to the storage. The object's class name
-                 and id are combined to create a unique key.
+        and id are combined to create a unique key.
         """
         object_key = f"{obj.__class__.__name__}.{obj.id}"
         self.__objects[object_key] = obj
 
     def save(self):
         """
-        Saves all objects in the `__objects` dictionary to the specified JSON file.
+        Saves all objects in the `__objects` dictionary
+        to the specified JSON file.
 
         This method performs the following steps:
 
-        1. **Serialization:**  Converts each object in `__objects` into a dictionary 
-           representation using the `to_dict()` method (assumed to be implemented in 
-           the classes of the objects being stored).
+        1. **Serialization:**  Converts each object in `__objects`
+        into a dictionary
+        representation using the `to_dict()` method (assumed to be
+        implemented in the classes of the objects being stored).
 
-        2. **Store Class Name:** Includes the class name (`__class__`) in the serialized 
-           dictionary to enable proper deserialization later.
+        2. **Store Class Name:** Includes the class name (`__class__`)
+        in the serialized
+        dictionary to enable proper deserialization later.
 
-        3. **File Writing:** Writes the serialized dictionary to the JSON file, providing 
-           persistent storage.
+        3. **File Writing:** Writes the serialized dictionary to the
+        JSON file, providing persistent storage.
         """
         serialized_objects = {}
 
@@ -65,23 +70,27 @@ class FileStorage:
 
     def reload(self):
         """
-        Loads objects from the JSON file and populates the `__objects` dictionary.
+        Loads objects from the JSON file and populates the `__objects`
+        dictionary.
 
         This method takes care of the following aspects:
 
         1. **Safe Class Handling:**
-            * Leverages `getattr` and `sys.modules` to dynamically import classes by 
-              their names from the class definitions present in the code. This protects 
-              against arbitrary code execution risks associated with direct use of `eval`.
+            * Leverages `getattr` and `sys.modules` to dynamically import
+             classes by their names from the class definitions present
+            in the code.This protects against arbitrary code execution
+            risks associated with direct use of `eval`.
 
         2. **Error Handling:**
-            * Gracefully handles missing files (`FileNotFoundError`), simply continuing 
-              without modifying the storage.
-            * Warns the user if an object's class cannot be found during deserialization, 
-              allowing the loading process to continue while skipping the affected object.
+            * Gracefully handles missing files (`FileNotFoundError`),
+            simply continuing without modifying the storage.
+            * Warns the user if an object's class cannot be found
+            during deserialization, allowing the loading process to
+             ontinue while skipping the affected object.
 
         3. **Deserialization and Instantiation:**
-            * Creates instances of the stored objects using their serialized data, ensuring 
+            * Creates instances of the stored objects using their
+            serialized data, ensuring
               the original object state is restored from the storage file.
         """
         try:
@@ -93,10 +102,9 @@ class FileStorage:
                 if class_name and hasattr(sys.modules, class_name):
                     module = sys.modules[class_name]
                     obj_class = getattr(module, class_name)
-                    obj_instance = obj_class(**serialized_obj)  # Create object instance
+                    obj_instance = obj_class(**serialized_obj)
                     self.__objects[object_key] = obj_instance
                 else:
-                    print(f"Warning: Skipping object with key '{object_key}' due to missing class '{class_name}'.")
-
+                    print(f"Warning: Skipping object with key '{object_key}'")
         except FileNotFoundError:
             pass  # Nothing to load if the file doesn't exist
