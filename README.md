@@ -1,4 +1,4 @@
-# AirBnB Clone Project
+# AirBnB Clone - The Console 
 
 ## 0x00.Table of contents
 
