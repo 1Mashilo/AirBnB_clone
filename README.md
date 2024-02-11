@@ -10,7 +10,7 @@
 * [0x06 Authors](#0x06-Authors)
 ## About
 
-This project replicates the core concepts of the AirBnB platform, providing a hands-on learning experience in full stack development. Following an iterative approach, we implement a robust command interpreter, object modeling, file-based persistence, and pave the way for advanced database integration, web templating, and a modern front-end interface.
+This project replicates the core concepts of the AirBnB platform, providing a hands-on learning experience in full stack development. Following an iterative approach, i implement a robust command interpreter, object modeling, file-based persistence, and pave the way for advanced database integration, web templating, and a modern front-end interface.
 
 ## Project Roadmap
 
