@@ -1,6 +1,6 @@
 # AirBnB Clone - The Console 
 
-## 0x00.Table of contents
+## Table of contents
 
 * [0x01 Introduction](#0x01-Introduction)
 * [0x02 Environment](#0x02-Environment)
