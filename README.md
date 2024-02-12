@@ -43,7 +43,14 @@ The AirBnB clone project progresses in distinct phases:
   - destroy
   - update
   - all
+    
+### Next Steps
 
+Integration of advanced storage mechanisms (a database)
+HTML/CSS templating for a web-based front-end. 
+API development to bridge server-side logic and the front-end interface.
+
+![Alt text](images/airbnb.png)
 
 ## 0x02 Environment
 
